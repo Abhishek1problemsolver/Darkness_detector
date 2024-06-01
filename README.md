@@ -53,11 +53,17 @@ An LDR changes its resistance based on the light intensity it is exposed to. In 
 
 ### Setup and Components
 - **LDR**: Connected in a voltage divider configuration with a fixed resistor (10kΩ). The junction of the LDR and the resistor is connected to an analog input pin (A0) of the Arduino to read the voltage level, which varies with light intensity.
-- **LED**: Connected to a digital output pin (13) of the Arduino, used to indicate darkness.
+- **LED**: Connected to one of the output pins of the 74HC595 shift register. The shift register is controlled by the Arduino and expands its output pins.
 
 ### Circuit Description
 1. **LDR and Resistor**: The LDR and a 10kΩ resistor form a voltage divider. One end of the LDR is connected to 5V, the other end to the analog input pin A0, and the 10kΩ resistor connects this junction to ground (GND).
-2. **LED and Resistor**: The LED is connected to digital pin 13 through a 220Ω current-limiting resistor. The cathode of the LED is connected to GND.
+2. **Shift Register (74HC595)**: The shift register receives serial data from the Arduino and provides parallel outputs. The data pins (DS, ST_CP, and SH_CP) of the 74HC595 are connected to digital pins of the Arduino.
+3. **LED and Resistor**: The LED is connected to one of the output pins of the 74HC595 through a 220Ω current-limiting resistor. The cathode of the LED is connected to GND.
+
+### Steps
+1. **Reading LDR Value**: The Arduino reads the analog voltage from the LDR using the `analogRead` function.
+2. **Comparison with Threshold**: The read value is compared with a predefined threshold. If the value is below the threshold, it indicates low light levels (darkness).
+3. **Controlling the LED via Shift Register**: Based on the comparison, the Arduino sends a signal to the 74HC595 shift register to set the output pin connected to the LED either HIGH (turning the LED on) or LOW (turning the LED off).
 
 ## Arduino IDE Code
 ```cpp
