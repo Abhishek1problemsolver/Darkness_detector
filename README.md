@@ -105,6 +105,6 @@ void updateshiftRegister() {
 
 ```
 ## video
-click on the image to see project in action:
+
 [![Darkness Detector](https://github.com/Abhishek1problemsolver/Darkness_detector/assets/121240970/d712c99b-ae81-4ff0-82fe-073254f67c51)](https://drive.google.com/file/d/1zGaIQl206SzrmY0VrdrH1joacs8Q75ke/view?usp=drivesdk)
 
